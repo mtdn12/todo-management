@@ -12,6 +12,11 @@
   },
   "author": "Vmt_91",
   "license": "MIT",
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.6.0",
+    "yarn": "1.5.1"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",

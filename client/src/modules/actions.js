@@ -2,12 +2,8 @@
 
 export {
   // Login
-  openLoginDialog,
-  closeLoginDialog,
   requestLogin,
   // Sign up
-  openSignUpDialog,
-  closeSignUpDailog,
   requestSignUp,
   // logout
   requestLogout,

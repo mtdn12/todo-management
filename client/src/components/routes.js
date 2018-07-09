@@ -11,3 +11,17 @@ export const AsyncWelcome = Loadable({
   loader: () => import('./pages/Welcome'),
   loading: LoadingPage,
 })
+
+// Register page
+
+export const AsyncRegister = Loadable({
+  loader: () => import('../containers/Register'),
+  loading: LoadingPage,
+})
+
+// Login page
+
+export const AsyncLogin = Loadable({
+  loader: () => import('../containers/Login'),
+  loading: LoadingPage,
+})

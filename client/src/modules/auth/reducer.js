@@ -7,14 +7,20 @@ import { ActionHandler } from './actions'
  */
 const initialState = fromJS({
   login: {
-    isOpenDialog: false,
     isLoading: false,
-    item: {},
+    item: {
+      email: '',
+      password: '',
+    },
   },
-  signUp: {
-    isOpenDialog: false,
+  register: {
     isLoading: false,
-    item: {},
+    item: {
+      name: '',
+      email: '',
+      password: '',
+      password2: '',
+    },
   },
   data: null,
 })

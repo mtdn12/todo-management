@@ -68,10 +68,11 @@ router.post('/register', async(req, res) => {
 router.post('/login', async(req, res) => {
   try {
     const {errors, isValid} = validateLoginInput(req.body)
+    console.log(errors)
     if(!isValid) return res.json({
       result:'fail',
       status: 404,
-      errors
+      message: errors.email || errors.password || "Something went wrong"
     })
     const user = await User.findOne({
       email: req.body.email
@@ -88,11 +89,10 @@ router.post('/login', async(req, res) => {
     console.log(user.password)
     const check = await bcrypt.compare(req.body.password,user.password)
     if(!check) {
-      errors.password = "Password incorect"
       return res.json({
         result: 'fail',
         status: 401,
-        errors
+        message: "Password incorect"
       })
     }
     const payload = {

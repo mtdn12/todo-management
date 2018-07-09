@@ -6,20 +6,20 @@ const styles = theme => ({
     padding: 30,
     position: 'relative',
   },
-  container: {
+  formContent: {
+    padding: 20,
+    marginTop: 30,
     maxWidth: 1200,
-    margin: '50px auto',
-    // background: theme.palette.common.white,
-    borderRadius: 10,
-    textAlign: 'center',
-    padding: 50,
+    margin: '0 auto',
+    color: theme.palette.common.white,
+    borderRadius: 30,
+    background: theme.palette.common.white,
   },
   btnWrapper: {
-    marginTop: 20,
-    '& a': {
+    textAlign: 'center',
+    '& a:last-child': {
+      marginLeft: 20,
       textDecoration: 'none',
-      color: 'inherit',
-      marginLeft: 40,
     },
   },
 })

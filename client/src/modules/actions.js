@@ -4,7 +4,7 @@ export {
   // Login
   requestLogin,
   // Sign up
-  requestSignUp,
+  requestRegister,
   // logout
   requestLogout,
 }

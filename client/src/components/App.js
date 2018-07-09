@@ -16,6 +16,8 @@ const App = () => (
       <CssBaseline />
       <Switch>
         <Route path="/welcome" component={routes.AsyncWelcome} />
+        <Route path="/register" component={routes.AsyncRegister} />
+        <Route path="/login" component={routes.AsyncLogin} />
       </Switch>
     </ErrorBoundary>
   </MuiThemeProvider>

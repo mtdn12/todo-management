@@ -9,12 +9,11 @@ const SEND_LOGIN_REQUEST = 'auth/SEND_LOGIN_REQUEST'
 const SEND_LOGIN_SUCCESS = 'auth/SEND_LOGIN_SUCCESS'
 const SEND_LOGIN_FAILURE = 'auth/SEND_LOGIN_FAILURE'
 
-// SignUp
+// Register
 
-const SEND_SIGN_UP_REQUEST = 'auth/SEND_SIGN_UP_REQUEST'
-const SEND_SIGN_UP_SUCCESS = 'auth/SEND_SIGN_UP_SUCCESS'
-const SEND_SIGN_UP_FAILURE = 'auth/SEND_SIGN_UP_FAILURE'
-const SEND_SIGN_UP_ERRORS = 'auth/SEND_SIGN_UP_ERRORS'
+const SEND_REGISTER_REQUEST = 'auth/SEND_REGISTER_REQUEST'
+const SEND_REGISTER_SUCCESS = 'auth/SEND_REGISTER_SUCCESS'
+const SEND_REGISTER_FAILURE = 'auth/SEND_REGISTER_FAILURE'
 
 // Logout
 const LOG_OUT_REQUEST = 'auth/LOG_OUT_REQUEST'
@@ -25,9 +24,9 @@ export const CONSTANTS = {
   SEND_LOGIN_SUCCESS,
   SEND_LOGIN_FAILURE,
   // Signup
-  SEND_SIGN_UP_REQUEST,
-  SEND_SIGN_UP_SUCCESS,
-  SEND_SIGN_UP_FAILURE,
+  SEND_REGISTER_REQUEST,
+  SEND_REGISTER_SUCCESS,
+  SEND_REGISTER_FAILURE,
   // Logout
 }
 
@@ -40,9 +39,9 @@ export const requestLogin = values => ({
   values,
 })
 
-// Signup actions
-export const requestSignUp = values => ({
-  type: SEND_SIGN_UP_REQUEST,
+// Register actions
+export const requestRegister = values => ({
+  type: SEND_REGISTER_REQUEST,
   values,
 })
 // Log out action
@@ -62,12 +61,7 @@ export const ActionHandler = {
     ),
   [SEND_LOGIN_SUCCESS]: (state, action) =>
     pipe(
-      [
-        mutators.hideLoginLoading,
-        mutators.clearItemLogin,
-        mutators.hideLoginDialog,
-        mutators.setData(action),
-      ],
+      [mutators.hideLoginLoading, mutators.setData(action)],
       state
     ),
   [SEND_LOGIN_FAILURE]: state =>
@@ -75,28 +69,22 @@ export const ActionHandler = {
       [mutators.hideLoginLoading],
       state
     ),
-  // signUp Handler
-  [SEND_SIGN_UP_REQUEST]: state =>
+  // Register Handler
+  [SEND_REGISTER_REQUEST]: state =>
     pipe(
-      [mutators.showSignUpLoading],
+      [mutators.showRegisterLoading],
       state
     ),
-  [SEND_SIGN_UP_SUCCESS]: state =>
+  [SEND_REGISTER_SUCCESS]: state =>
     pipe(
-      [
-        mutators.hideSignUpDialog,
-        mutators.showLoginDialog,
-        mutators.setItemLogin,
-        mutators.hideSignUpLoading,
-      ],
+      [mutators.hideRegisterLoading],
       state
     ),
-  [SEND_SIGN_UP_FAILURE]: state =>
+  [SEND_REGISTER_FAILURE]: state =>
     pipe(
-      [mutators.hideSignUpLoading],
+      [mutators.hideRegisterLoading],
       state
     ),
-
   // Logout
   [LOG_OUT_REQUEST]: state =>
     pipe(

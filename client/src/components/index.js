@@ -14,6 +14,10 @@ export { default as LoadingPage } from './pages/LoadingPage'
 
 export { default as Welcome } from './pages/Welcome'
 
+export { default as Register } from './pages/Register'
+
+export { default as Login } from './pages/Login'
+
 
 // organisms
 export { default as Navbar } from './organisms/Navbar'

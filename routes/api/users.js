@@ -22,18 +22,17 @@ router.post('/register', async(req, res) => {
       return res.json({
         result: 'fail',
         status: 400,
-        errors,
+        message: errors.name || errors.email || errors.password || errors.password2 || ' '
       })
     }
     const user = await User.findOne({
       email: req.body.email
     })
     if(user){
-      errors.email ="Email already exist"
       return res.json({
         result: 'fail',
         status: 400,
-        errors
+        message: "Email already exist"
       })
     }
     const newUser = new User({

@@ -8,6 +8,7 @@ const keys = require('./config/keys')
 const users = require('./routes/api/users')
 const todos = require('./routes/api/todos')
 const history = require('./routes/api/history')
+const daily = require('./routes/api/daily')
 
 
 const app = express()
@@ -19,7 +20,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 
 // DB Config
-mongoose.connect(keys.mongoURI)
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err))
 
@@ -34,6 +35,7 @@ require('./config/passport')(passport)
 app.use("/api/users", users)
 app.use("/api/todos", todos)
 app.use("/api/history", history)
+app.use("/api/dailys", daily)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))

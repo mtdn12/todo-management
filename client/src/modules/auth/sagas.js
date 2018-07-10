@@ -46,7 +46,7 @@ function* loginWorker({ values }) {
     yield put(push('/dashboard'))
   } catch (error) {
     yield put({
-      type: CONSTANTS.SEND_REGISTER_FAILURE,
+      type: CONSTANTS.SEND_LOGIN_FAILURE,
     })
     yield put(showNotification(error.message))
   }

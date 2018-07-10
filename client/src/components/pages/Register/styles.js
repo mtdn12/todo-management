@@ -9,7 +9,7 @@ const styles = theme => ({
   formContent: {
     padding: 20,
     marginTop: 30,
-    maxWidth: 1200,
+    maxWidth: 800,
     margin: '0 auto',
     color: theme.palette.common.white,
     borderRadius: 30,

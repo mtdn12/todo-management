@@ -81,7 +81,8 @@ const Login = ({ classes, isLoading, item, handleLogin }) => {
                   variant="raised"
                   color="primary"
                   type="submit"
-                  disabled={isLoading}>
+                  // disabled={isLoading}
+                  >
                   Login
                 </Button>
                 <Link to="/welcome">

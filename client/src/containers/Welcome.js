@@ -9,7 +9,7 @@ import { authSaga } from '../modules/sagas'
 
 class WelcomeContainer extends Component {
   static propTypes = {
-    userData: object.isRequired,
+    userData: object,
   }
   render() {
     return <Welcome userData={this.props.userData} />

@@ -88,7 +88,7 @@ export const ActionHandler = {
   // Logout
   [LOG_OUT_REQUEST]: state =>
     pipe(
-      [mutators.clearData],
+      [mutators.clearUserData],
       state
     ),
 }

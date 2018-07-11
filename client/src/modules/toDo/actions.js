@@ -26,6 +26,11 @@ const REMOVE_DONE_REQUEST = 'todo/REMOVE_DONE_REQUEST'
 const REMOVE_DONE_FAILURE = 'todo/REMOVE_DONE_FAILURE'
 const REMOVE_DONE_SUCCESS = 'todo/REMOVE_DONE_SUCCESS'
 
+// Set daily task
+const ADD_DAILY_TASKS_REQUEST = 'todo/ADD_DAILY_TASKS_REQUEST'
+const ADD_DAILY_TASKS_SUCCESS = 'todo/ADD_DAILY_TASKS_SUCCESS'
+const ADD_DAILY_TASKS_FAILURE = 'todo/ADD_DAILY_TASKS_FAILURE'
+
 export const CONSTANTS = {
   ADD_TODO_REQUEST,
   ADD_TODO_SUCCESS,
@@ -46,6 +51,10 @@ export const CONSTANTS = {
   REMOVE_DONE_REQUEST,
   REMOVE_DONE_FAILURE,
   REMOVE_DONE_SUCCESS,
+  //
+  ADD_DAILY_TASKS_REQUEST,
+  ADD_DAILY_TASKS_SUCCESS,
+  ADD_DAILY_TASKS_FAILURE,
 }
 
 /**
@@ -74,6 +83,10 @@ export const requestCheckDone = id => ({
 export const requestRemoveDone = id => ({
   type: REMOVE_DONE_REQUEST,
   id,
+})
+
+export const requestAddDailyTasks = () => ({
+  type: ADD_DAILY_TASKS_REQUEST,
 })
 
 export const ActionHandler = {
@@ -122,6 +135,22 @@ export const ActionHandler = {
   [REMOVE_DONE_SUCCESS]: (state, action) =>
     pipe(
       [mutators.setItems(action)],
+      state
+    ),
+  // Request daily tag
+  [ADD_DAILY_TASKS_REQUEST]: state =>
+    pipe(
+      [mutators.showLoadingSetDaily],
+      state
+    ),
+  [ADD_DAILY_TASKS_SUCCESS]: (state, action) =>
+    pipe(
+      [mutators.setItems(action), mutators.hideLoadingSetDaily],
+      state
+    ),
+  [ADD_DAILY_TASKS_FAILURE]: state =>
+    pipe(
+      [mutators.hideLoadingSetDaily],
       state
     ),
 }

@@ -11,6 +11,7 @@ import {
   requestDeleteTodo,
   requestRemoveDone,
   requestCheckDone,
+  requestAddDailyTasks,
 } from '../modules/actions'
 import { func } from 'prop-types'
 
@@ -60,6 +61,7 @@ const mapStateToProps = state => ({
   isLoading: state.getIn(['toDo', 'isLoading']),
   isLoadingAdd: state.getIn(['toDo', 'isLoadingAdd']),
   userData: state.getIn(['auth', 'data']),
+  isLoadingSetDaily: state.getIn(['toDo', 'isLoadingSetDaily']),
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -68,6 +70,7 @@ const mapDispatchToProps = dispatch => ({
   handleDeleteToDo: id => dispatch(requestDeleteTodo(id)),
   handleCheckDone: id => dispatch(requestCheckDone(id)),
   handleRemoveDone: id => dispatch(requestRemoveDone(id)),
+  handleAddDailyTasks: () => dispatch(requestAddDailyTasks()),
 })
 
 const withConnect = connect(

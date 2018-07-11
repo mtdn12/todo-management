@@ -6,19 +6,24 @@ axios.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded'
 
 /**
 |--------------------------------------------------
-| Register User
+| Add Daily task
 |--------------------------------------------------
 */
 
-export const register = (name, email, password, password2) =>
-  axios.post(`/api/users/register`, { name, email, password, password2 })
+export const addDaily = text => axios.post('/api/dailys/', { text })
 
 /**
 |--------------------------------------------------
-| Check User Login
+| Get daily
 |--------------------------------------------------
 */
 
-export const login = (email, password) =>
-  axios.post(`/api/users/login`, { email, password })
+export const getDaily = () => axios.get('/api/dailys/')
 
+/**
+|--------------------------------------------------
+| Delete daily task
+|--------------------------------------------------
+*/
+
+export const deleteDaily = id => axios.delete(`/api/dailys/${id}`)

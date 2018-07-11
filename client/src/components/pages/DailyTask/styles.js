@@ -15,9 +15,6 @@ const styles = theme => ({
     borderRadius: 30,
     background: theme.palette.common.white,
   },
-  btnWrap: {
-    marginBottom: 20,
-  },
   loadingWrap: {
     textAlign: 'center',
   },

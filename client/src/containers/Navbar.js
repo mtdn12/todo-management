@@ -6,11 +6,20 @@ import { withReducer, withSaga } from '../utils'
 import { authReducer } from '../modules/reducers'
 import { authSaga } from '../modules/sagas'
 import { requestLogout } from '../modules/actions'
-
+import { object, func } from 'prop-types'
 
 class NavbarContainer extends Component {
+  static propTypes = {
+    userData: object,
+    handleLogout: func.isRequired,
+  }
   render() {
-    return <Navbar />
+    return (
+      <Navbar
+        userData={this.props.userData}
+        handleLogout={this.props.handleLogout}
+      />
+    )
   }
 }
 

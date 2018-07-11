@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable'
+import { removeToken } from '../../utils/token'
 
 // LOgin Mutator
 export const showLoginLoading = state =>
@@ -7,10 +8,15 @@ export const hideLoginLoading = state =>
   state.setIn(['login', 'isLoading'], false)
 
 export const setData = action => state => state.set('data', fromJS(action.data))
-export const clearData = state => state.set('data', null)
 
 // Register Mutator
 export const showRegisterLoading = state =>
   state.setIn(['register', 'isLoading'], true)
 export const hideRegisterLoading = state =>
   state.setIn(['register', 'isLoading'], false)
+
+// Logout mutator
+export const clearUserData = state => {
+  removeToken()
+  state.set('data', null)
+}

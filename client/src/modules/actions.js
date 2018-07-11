@@ -19,5 +19,14 @@ export {
   requestAddTodo,
   requestDeleteTodo,
   requestCheckDone,
-  requestRemoveDone
+  requestRemoveDone,
+  requestAddDailyTasks,
 } from './toDo/actions'
+
+// Daily task actions
+
+export {
+  requestAddDaily,
+  requestGetDaily,
+  requestDeleteDaily,
+} from './dailyTask/actions'

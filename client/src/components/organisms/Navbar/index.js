@@ -14,9 +14,7 @@ import styles from './styles'
 import classNames from 'classnames'
 
 const Navbar = props => {
-  const {
-    classes,
-  } = props
+  const { classes, userData, handleLogout } = props
   return (
     <div>
       <AppBar position="static">
@@ -28,9 +26,18 @@ const Navbar = props => {
               </Typography>
             </Link>
           </div>
-          <div className={classes.navRight}>
-
-          </div>
+          {userData && (
+            <div className={classes.navRight}>
+              <Link to="/daily-task" className={classes.link}>
+                <Button variant="text" color="inherit">
+                  Daily Task
+                </Button>
+              </Link>
+              <Button variant="text" color="inherit" onClick={handleLogout}>
+                LogOut
+              </Button>
+            </div>
+          )}
         </Toolbar>
       </AppBar>
     </div>
@@ -39,6 +46,8 @@ const Navbar = props => {
 
 Navbar.propTypes = {
   classes: object.isRequired,
+  userData: object,
+  handleLogout: func.isRequired,
 }
 
 export default withStyles(styles)(Navbar)

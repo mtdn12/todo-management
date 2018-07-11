@@ -9,16 +9,6 @@ const styles = theme => ({
       fontSize: 20,
     },
   },
-  done: {
-    cursor: 'pointer',
-    background: theme.palette.primary.light,
-    borderRadius: 5,
-  },
-  unDone: {
-    cursor: 'pointer',
-    background: theme.palette.grey[100],
-    borderRadius: 5,
-  },
 })
 
 export default styles

@@ -43,3 +43,11 @@ export const checkDoneToDo = id => axios.post(`/api/todos/completed/${id}`)
 */
 
 export const removeDoneToDo = id => axios.post(`/api/todos/uncompleted/${id}`)
+
+/**
+|--------------------------------------------------
+| Add daily tasks
+|--------------------------------------------------
+*/
+
+export const addDailyTasks = () => axios.post(`/api/todos/set-daily`)

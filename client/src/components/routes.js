@@ -31,3 +31,10 @@ export const AsyncToDo = Loadable({
   loader: () => import('../containers/ToDo'),
   loading: LoadingPage,
 })
+
+// daily Task
+
+export const AsyncDailyTask = Loadable({
+  loader: () => import('../containers/DailyTask'),
+  loading: LoadingPage,
+})

@@ -37,7 +37,7 @@ const welcome = ({ classes, userData, location }) => (
 )
 welcome.propTypes = {
   classes: object.isRequired,
-  userData: object.isRequired,
+  userData: object,
   location: object,
 }
 

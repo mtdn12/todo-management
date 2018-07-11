@@ -20,6 +20,7 @@ const App = () => (
         <Route path="/register" component={routes.AsyncRegister} />
         <Route path="/login" component={routes.AsyncLogin} />
         <PrivateRoute path="/todo" component={routes.AsyncToDo} />
+        <PrivateRoute path="/daily-task" component={routes.AsyncDailyTask} />
       </Switch>
     </ErrorBoundary>
   </MuiThemeProvider>

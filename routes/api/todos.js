@@ -3,6 +3,8 @@ const passport = require("passport");
 const moment = require("moment");
 // Todo modules
 const Todo = require("../../Models/Todo");
+// Daily modules
+const Daily = require("../../Models/Daily")
 // Todo validate
 const validateTodoInput = require("../../validation/todo");
 
@@ -233,7 +235,8 @@ router.get(
         createdAt: {
           $gte: `${moment().format("YYYY-MM-DD")} 00:00:00`,
           $lte: `${moment().format("YYYY-MM-DD")} 23:59:59`
-        }
+        },
+        user: req.user.id
       });
       if (!todos) throw new Error()
       return res.json({
@@ -251,5 +254,48 @@ router.get(
     }
   }
 );
+
+// Routes Post: /api/todos/set-daily
+// desc : Add all daily Task to task
+// access : Private
+router.post('/set-daily', passport.authenticate('jwt',{session: false}), async(req, res)=>{
+  try {
+    const daily = await Daily.findOne({
+      user: req.user.id
+    })
+    if(!daily) return res.json({
+      result: 'fail',
+      status: 404,
+      message: "You don't have any daily task"
+    })
+      let todo
+    await Promise.all(daily.list.map( async o =>{
+       await (new Todo({
+         user: req.user.id,
+         text: o.text
+      })).save()      
+    }))
+    const newTodos = await Todo.find({
+        createdAt: {
+          $gte: `${moment().format("YYYY-MM-DD")} 00:00:00`,
+          $lte: `${moment().format("YYYY-MM-DD")} 23:59:59`
+        },
+        user: req.user.id
+      });
+    return res.json({
+      result: 'success',
+      status: 200,
+      message: "Set daily task success",
+      items: newTodos
+    })
+  } catch (error) {
+    console.log(error)
+    return res.json({
+      result: 'fail',
+      status: 400,
+      message: "Can't add daily tasks"
+    })
+  }
+})
 
 module.exports = router;

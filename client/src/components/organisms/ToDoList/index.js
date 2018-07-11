@@ -31,7 +31,7 @@ const ToDoList = ({
                   ? handleRemoveDone(item.get('_id'))
                   : handleCheckDone(item.get('_id'))
               }}>
-              <Typography>{item.get('text')}</Typography>
+              <Typography variant="body1">{item.get('text')}</Typography>
             </Grid>
             <Grid item xs={1}>
               <IconButton

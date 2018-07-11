@@ -8,13 +8,12 @@ import { ActionHandler } from './actions'
 const initialState = fromJS({
   isLoadingAdd: false,
   isLoading: false,
-  items: [],
-  isLoadingSetDaily: false,
+  item: {},
 })
 /**
  * Reducer
  */
-export default function toDo(currentState = initialState, action) {
+export default function dailyTask(currentState = initialState, action) {
   const handler = ActionHandler[action.type]
   return handler ? handler(currentState, action) : currentState
 }

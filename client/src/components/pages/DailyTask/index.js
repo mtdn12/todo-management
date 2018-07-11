@@ -8,40 +8,42 @@ import {
   IconButton,
   Button,
   CircularProgress,
+  Typography,
 } from '@material-ui/core'
 import { Add } from '@material-ui/icons'
 import Template from '../../templates/Template'
-import { ToDoList } from '../../'
+import { DailyList } from '../../'
 
-const ToDo = ({
+const DailyTask = ({
   classes,
   text,
   handleChangeInput,
   errors,
   handleAddTodo,
-  items,
+  item,
   isLoading,
   isLoadingAdd,
-  handleDeleteToDo,
-  handleCheckDone,
-  handleRemoveDone,
-  handleAddDailyTasks,
-  isLoadingSetDaily,
+  handleDeleteDaily,
 }) => {
   return (
     <Template>
       <div className={classes.bg}>
         <div className={classes.container}>
+          <Typography
+            variant="headline"
+            color="primary"
+            gutterBottom
+            align="center">
+            Daily Tasks
+          </Typography>
+          <Typography
+            variant="body1"
+            align="center"
+            color="primary"
+            gutterBottom>
+            Add your daily todos here to easy add everyday
+          </Typography>
           <Grid container spacing={8}>
-            <Grid container className={classes.btnWrap}>
-              <Button
-                variant="raised"
-                color="primary"
-                disabled={isLoadingSetDaily}
-                onClick={handleAddDailyTasks}>
-                Add Daily Todos
-              </Button>
-            </Grid>
             <Grid item xs={11}>
               <TextField
                 fullWidth
@@ -70,32 +72,23 @@ const ToDo = ({
             </div>
           )}
           {!isLoading && (
-            <ToDoList
-              items={items}
-              handleDeleteToDo={handleDeleteToDo}
-              handleCheckDone={handleCheckDone}
-              handleRemoveDone={handleRemoveDone}
-            />
+            <DailyList item={item} handleDeleteDaily={handleDeleteDaily} />
           )}
         </div>
       </div>
     </Template>
   )
 }
-ToDo.propTypes = {
+DailyTask.propTypes = {
   classes: object.isRequired,
   text: string.isRequired,
   handleChangeInput: func.isRequired,
   errors: object.isRequired,
   handleAddTodo: func.isRequired,
-  items: object.isRequired,
+  item: object.isRequired,
   isLoading: bool.isRequired,
   isLoadingAdd: bool.isRequired,
-  handleDeleteToDo: func.isRequired,
-  handleAddDailyTasks: func.isRequired,
-  handleCheckDone: func.isRequired,
-  handleRemoveDone: func.isRequired,
-  isLoadingSetDaily: bool.isRequired,
+  handleDeleteDaily: func.isRequired,
 }
 
-export default withStyles(styles)(ToDo)
+export default withStyles(styles)(DailyTask)

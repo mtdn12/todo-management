@@ -18,6 +18,7 @@ import {
   deleteToDo,
   checkDoneToDo,
   removeDoneToDo,
+  addDailyTasks,
 } from '../../api/toDoApi'
 
 import checkErrors from '../../utils/checkError'
@@ -118,6 +119,24 @@ function* removeDoneToDoWorker({ id }) {
   }
 }
 
+function* addDailyTasksWorker() {
+  try {
+    const response = yield call(addDailyTasks)
+    checkErrors(response)
+    yield put({
+      type: CONSTANTS.ADD_DAILY_TASKS_SUCCESS,
+      items: response.data.items,
+    })
+    // yield put(requestGetListTodo())
+    yield put(showNotification('Set daily tags success'))
+  } catch (error) {
+    yield put({
+      type: CONSTANTS.ADD_DAILY_TASKS_FAILURE,
+    })
+    yield put(showNotification(error.message))
+  }
+}
+
 function* toDoWatcher() {
   yield all([
     takeLatest(CONSTANTS.ADD_TODO_REQUEST, addToDoWorker),
@@ -125,6 +144,7 @@ function* toDoWatcher() {
     takeEvery(CONSTANTS.DELETE_TODO_REQUEST, deleteToDoWorker),
     takeEvery(CONSTANTS.CHECK_DONE_REQUEST, checkDoneToDoWorker),
     takeEvery(CONSTANTS.REMOVE_DONE_REQUEST, removeDoneToDoWorker),
+    takeLatest(CONSTANTS.ADD_DAILY_TASKS_REQUEST, addDailyTasksWorker),
   ])
 }
 

@@ -23,7 +23,7 @@ const PrivateRoute = ({ component: Component, userData, ...rest }) => (
 
 PrivateRoute.propTypes = {
   component: any.isRequired,
-  userdata: any,
+  userData: any,
   location: object,
 }
 

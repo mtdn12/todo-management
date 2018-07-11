@@ -18,8 +18,10 @@ export { default as Register } from './pages/Register'
 
 export { default as Login } from './pages/Login'
 
+export { default as ToDo } from './pages/ToDo'
+
 
 // organisms
 export { default as Navbar } from './organisms/Navbar'
 export { default as Notification } from './organisms/Notification'
-
+export { default as ToDoList } from './organisms/ToDoList'

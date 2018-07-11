@@ -25,3 +25,9 @@ export const AsyncLogin = Loadable({
   loader: () => import('../containers/Login'),
   loading: LoadingPage,
 })
+
+// Todo page
+export const AsyncToDo = Loadable({
+  loader: () => import('../containers/ToDo'),
+  loading: LoadingPage,
+})

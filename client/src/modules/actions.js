@@ -7,13 +7,15 @@ export {
   requestRegister,
   // logout
   requestLogout,
-}
-from './auth/actions'
+} from './auth/actions'
 
 // Notification
 
+export { showNotification, hideNotification } from './notification/actions'
+
+// ToDo action
 export {
-  showNotification,
-  hideNotification
-}
-from './notification/actions'
+  requestGetListTodo,
+  requestAddTodo,
+  requestDeleteTodo,
+} from './toDo/actions'

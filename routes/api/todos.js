@@ -25,7 +25,7 @@ router.post(
         return res.json({
           result: "fail",
           status: 400,
-          errors
+          message: errors.text || "Can't add todo"
         });
       const newTodo = new Todo({
         user: req.user.id,

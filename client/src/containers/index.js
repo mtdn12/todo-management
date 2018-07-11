@@ -1,4 +1,5 @@
 export { default as Notification } from './Notification'
 export { default as Navbar } from './Navbar'
-export { default as Register} from './Register'
-
+export { default as Register } from './Register'
+export { default as PrivateRoute } from './PrivateRoute'
+export { default as ToDo } from './ToDo'

@@ -18,6 +18,7 @@ const App = () => (
         <Route path="/welcome" component={routes.AsyncWelcome} />
         <Route path="/register" component={routes.AsyncRegister} />
         <Route path="/login" component={routes.AsyncLogin} />
+        <PrivateRoute path="/todo" component={routes.AsyncToDo} />
       </Switch>
     </ErrorBoundary>
   </MuiThemeProvider>

@@ -1,7 +1,6 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects'
 
 import { CONSTANTS } from './actions'
-import { push } from 'react-router-redux'
 
 import { showNotification } from '../actions'
 import { addDaily, getDaily, deleteDaily } from '../../api/dailyTaskApi'

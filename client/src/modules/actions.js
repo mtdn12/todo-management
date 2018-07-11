@@ -30,3 +30,6 @@ export {
   requestGetDaily,
   requestDeleteDaily,
 } from './dailyTask/actions'
+
+// History actions
+export { requestGetListHistory } from './history/actions'

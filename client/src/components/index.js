@@ -22,6 +22,8 @@ export { default as ToDo } from './pages/ToDo'
 
 export { default as DailyTask } from './pages/DailyTask'
 
+export { default as History } from './pages/History'
+
 
 
 // organisms

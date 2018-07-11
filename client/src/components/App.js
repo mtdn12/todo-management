@@ -21,6 +21,7 @@ const App = () => (
         <Route path="/login" component={routes.AsyncLogin} />
         <PrivateRoute path="/todo" component={routes.AsyncToDo} />
         <PrivateRoute path="/daily-task" component={routes.AsyncDailyTask} />
+        <PrivateRoute path="/history" component={routes.AsyncHistory} />
       </Switch>
     </ErrorBoundary>
   </MuiThemeProvider>

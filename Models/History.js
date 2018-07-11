@@ -9,7 +9,11 @@ const HistorySchema = new Schema({
   addAt: {
     type: Date,
     default: Date.now
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'users'
   }
 })
 
-module.exports = History = mongoose.model('historys', HistorySchema)
+module.exports = History = mongoose.model('histories', HistorySchema)

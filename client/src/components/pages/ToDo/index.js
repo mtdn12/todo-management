@@ -33,7 +33,7 @@ const ToDo = ({
       <div className={classes.bg}>
         <div className={classes.container}>
           <Grid container spacing={8}>
-            <Grid container className={classes.btnWrap}>
+            <Grid container className={classes.btnWrap} justify="space-between">
               <Button
                 variant="raised"
                 color="primary"

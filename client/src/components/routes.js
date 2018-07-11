@@ -38,3 +38,10 @@ export const AsyncDailyTask = Loadable({
   loader: () => import('../containers/DailyTask'),
   loading: LoadingPage,
 })
+
+// History page
+
+export const AsyncHistory = Loadable({
+  loader: () => import('../containers/History'),
+  loading: LoadingPage,
+})

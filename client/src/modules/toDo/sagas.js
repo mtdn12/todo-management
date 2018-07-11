@@ -7,8 +7,7 @@ import {
   takeEvery,
 } from 'redux-saga/effects'
 
-import { CONSTANTS, requestGetListTodo } from './actions'
-import { push } from 'react-router-redux'
+import { CONSTANTS } from './actions'
 import { getItems } from './selectors'
 
 import { showNotification } from '../actions'

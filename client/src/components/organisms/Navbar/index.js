@@ -1,15 +1,8 @@
 import React from 'react'
-import { object, func, any } from 'prop-types'
+import { object, func } from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import { Link } from 'react-router-dom'
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  IconButton,
-  Avatar,
-} from '@material-ui/core'
+import { AppBar, Toolbar, Typography, Button } from '@material-ui/core'
 import styles from './styles'
 import classNames from 'classnames'
 
@@ -31,6 +24,11 @@ const Navbar = props => {
               <Link to="/daily-task" className={classes.link}>
                 <Button variant="text" color="inherit">
                   Daily Task
+                </Button>
+              </Link>
+              <Link to="/history" className={classes.link}>
+                <Button variant="text" color="inherit">
+                  History
                 </Button>
               </Link>
               <Button variant="text" color="inherit" onClick={handleLogout}>

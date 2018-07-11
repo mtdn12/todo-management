@@ -8,6 +8,10 @@ export { default as toDoReducer } from './toDo/reducer'
 
 export { default as dailyTaskReducer } from './dailyTask/reducer'
 
+// History
+
+export { default as historyReducer } from './history/reducer'
+
 // Notification
 
 export { default as notificationReducer } from './notification/reducer'

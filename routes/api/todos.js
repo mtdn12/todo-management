@@ -3,10 +3,15 @@ const passport = require("passport");
 const moment = require("moment");
 // Todo modules
 const Todo = require("../../Models/Todo");
+// History modules
+const History = require("../../Models/History")
 // Daily modules
 const Daily = require("../../Models/Daily")
 // Todo validate
 const validateTodoInput = require("../../validation/todo");
+
+const today = moment().startOf('day')
+const tomorrow = moment().endOf('day')
 
 // Routes POST: /api/todos/
 // desc : Create a todo
@@ -34,6 +39,24 @@ router.post(
         text: req.body.text
       });
       const todo = await newTodo.save();
+      // save to date history
+      const dateHistory = await History.findOne({
+        addAt: {
+          $gte: today,
+          $lte: tomorrow,
+        },
+        user: req.user.id
+      })
+      if(!dateHistory){
+        let history = new History({
+          list: [todo._id],
+          user: req.user.id
+        })
+        await history.save()
+      }else {
+        dateHistory.list.push(todo._id)
+        await dateHistory.save()
+      }
       return res.json({
         result: "success",
         status: 200,
@@ -230,11 +253,11 @@ router.get(
     session: false
   }),
   async (req, res) => {
-    try {
+    try {      
       const todos = await Todo.find({
         createdAt: {
-          $gte: `${moment().format("YYYY-MM-DD")} 00:00:00`,
-          $lte: `${moment().format("YYYY-MM-DD")} 23:59:59`
+          $gte: today,
+          $lte: tomorrow,
         },
         user: req.user.id
       });
@@ -268,20 +291,37 @@ router.post('/set-daily', passport.authenticate('jwt',{session: false}), async(r
       status: 404,
       message: "You don't have any daily task"
     })
-      let todo
-    await Promise.all(daily.list.map( async o =>{
+    await Promise.all(daily.list.map( async o =>{        
        await (new Todo({
          user: req.user.id,
          text: o.text
       })).save()      
     }))
+
+    // Check if exist history then delete and create new , if dont create one 
+    const existHistory = await History.findOne({
+      addAt: {
+        $gte: today,
+        $lte: tomorrow,
+      },
+      user: req.user.id
+    })
+    if (existHistory) await existHistory.remove()
+    // Find all Todos now
     const newTodos = await Todo.find({
-        createdAt: {
-          $gte: `${moment().format("YYYY-MM-DD")} 00:00:00`,
-          $lte: `${moment().format("YYYY-MM-DD")} 23:59:59`
-        },
-        user: req.user.id
-      });
+      createdAt: {
+        $gte: today,
+        $lte: tomorrow
+      },
+      user: req.user.id
+    });
+    // Create new history
+    const history = new History({
+      list: newTodos.map(todo => todo._id),
+      user: req.user.id
+    });
+    await history.save();
+
     return res.json({
       result: 'success',
       status: 200,

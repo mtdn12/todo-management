@@ -5,7 +5,13 @@ import { connect } from 'react-redux'
 import { withReducer, withSaga } from '../utils'
 import { toDoReducer } from '../modules/reducers'
 import { toDoSaga } from '../modules/sagas'
-import { requestGetListTodo, requestAddTodo, requestDeleteTodo } from '../modules/actions'
+import {
+  requestGetListTodo,
+  requestAddTodo,
+  requestDeleteTodo,
+  requestRemoveDone,
+  requestCheckDone,
+} from '../modules/actions'
 import { func } from 'prop-types'
 
 class ToDoContainer extends Component {
@@ -53,12 +59,15 @@ const mapStateToProps = state => ({
   items: state.getIn(['toDo', 'items']),
   isLoading: state.getIn(['toDo', 'isLoading']),
   isLoadingAdd: state.getIn(['toDo', 'isLoadingAdd']),
+  userData: state.getIn(['auth', 'data']),
 })
 
 const mapDispatchToProps = dispatch => ({
   handleGetListToDo: () => dispatch(requestGetListTodo()),
   handleAddTodoRequest: text => dispatch(requestAddTodo(text)),
-  handleDeleteToDo: id => dispatch(requestDeleteTodo(id))
+  handleDeleteToDo: id => dispatch(requestDeleteTodo(id)),
+  handleCheckDone: id => dispatch(requestCheckDone(id)),
+  handleRemoveDone: id => dispatch(requestRemoveDone(id)),
 })
 
 const withConnect = connect(

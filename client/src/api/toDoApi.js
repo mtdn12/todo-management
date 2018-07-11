@@ -27,3 +27,19 @@ export const getListToDo = () => axios.get('/api/todos/today')
 */
 
 export const deleteToDo = id => axios.delete(`/api/todos/${id}`)
+
+/**
+|--------------------------------------------------
+| Check complte todo
+|--------------------------------------------------
+*/
+
+export const checkDoneToDo = id => axios.post(`/api/todos/completed/${id}`)
+
+/**
+|--------------------------------------------------
+| Remove complte todo
+|--------------------------------------------------
+*/
+
+export const removeDoneToDo = id => axios.post(`/api/todos/uncompleted/${id}`)

@@ -15,6 +15,7 @@ const App = () => (
     <ErrorBoundary>
       <CssBaseline />
       <Switch>
+        <Redirect exact from="/" to="/welcome" />
         <Route path="/welcome" component={routes.AsyncWelcome} />
         <Route path="/register" component={routes.AsyncRegister} />
         <Route path="/login" component={routes.AsyncLogin} />

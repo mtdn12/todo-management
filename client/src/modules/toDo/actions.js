@@ -17,6 +17,15 @@ const DELETE_TODO_REQUEST = 'todo/DELETE_TODO_REQUEST'
 const DELETE_TODO_SUCCESS = 'todo/DELETE_TODO_SUCCESS'
 const DELETE_TODO_FAILURE = 'todo/DELETE_TODO_FAILURE'
 
+// Mark complete and uncomplete
+const CHECK_DONE_REQUEST = 'todo/CHECK_DONE_REQUEST'
+const CHECK_DONE_SUCCESS = 'todo/CHECK_DONE_SUCCESS'
+const CHECK_DONE_FAILURE = 'todo/CHECK_DONE_FAILURE'
+
+const REMOVE_DONE_REQUEST = 'todo/REMOVE_DONE_REQUEST'
+const REMOVE_DONE_FAILURE = 'todo/REMOVE_DONE_FAILURE'
+const REMOVE_DONE_SUCCESS = 'todo/REMOVE_DONE_SUCCESS'
+
 export const CONSTANTS = {
   ADD_TODO_REQUEST,
   ADD_TODO_SUCCESS,
@@ -29,6 +38,14 @@ export const CONSTANTS = {
   DELETE_TODO_REQUEST,
   DELETE_TODO_SUCCESS,
   DELETE_TODO_FAILURE,
+  //
+  CHECK_DONE_REQUEST,
+  CHECK_DONE_SUCCESS,
+  CHECK_DONE_FAILURE,
+
+  REMOVE_DONE_REQUEST,
+  REMOVE_DONE_FAILURE,
+  REMOVE_DONE_SUCCESS,
 }
 
 /**
@@ -49,20 +66,35 @@ export const requestDeleteTodo = id => ({
   id,
 })
 
+export const requestCheckDone = id => ({
+  type: CHECK_DONE_REQUEST,
+  id,
+})
+
+export const requestRemoveDone = id => ({
+  type: REMOVE_DONE_REQUEST,
+  id,
+})
+
 export const ActionHandler = {
   [ADD_TODO_REQUEST]: state =>
     pipe(
       [mutators.showLoadingAdd],
       state
     ),
-  [ADD_TODO_SUCCESS]: state =>
+  [ADD_TODO_SUCCESS]: (state, action) =>
     pipe(
-      [mutators.hideLoadingAdd],
+      [mutators.hideLoadingAdd, mutators.setItems(action)],
       state
     ),
   [ADD_TODO_FAILURE]: state =>
     pipe(
       [mutators.hideLoadingAdd],
+      state
+    ),
+  [DELETE_TODO_SUCCESS]: (state, action) =>
+    pipe(
+      [mutators.setItems(action)],
       state
     ),
   // Get list todo
@@ -79,6 +111,17 @@ export const ActionHandler = {
   [GET_LIST_TODO_FAILURE]: state =>
     pipe(
       [mutators.hideLoading],
+      state
+    ),
+  // Check done or undone
+  [CHECK_DONE_SUCCESS]: (state, action) =>
+    pipe(
+      [mutators.setItems(action)],
+      state
+    ),
+  [REMOVE_DONE_SUCCESS]: (state, action) =>
+    pipe(
+      [mutators.setItems(action)],
       state
     ),
 }

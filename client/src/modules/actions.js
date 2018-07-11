@@ -18,4 +18,6 @@ export {
   requestGetListTodo,
   requestAddTodo,
   requestDeleteTodo,
+  requestCheckDone,
+  requestRemoveDone
 } from './toDo/actions'

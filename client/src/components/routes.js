@@ -8,7 +8,7 @@ import { LoadingPage } from '.'
 }) */
 
 export const AsyncWelcome = Loadable({
-  loader: () => import('./pages/Welcome'),
+  loader: () => import('../containers/Welcome'),
   loading: LoadingPage,
 })
 

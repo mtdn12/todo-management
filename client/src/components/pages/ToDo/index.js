@@ -17,6 +17,8 @@ const ToDo = ({
   isLoading,
   isLoadingAdd,
   handleDeleteToDo,
+  handleCheckDone,
+  handleRemoveDone,
 }) => {
   return (
     <Template>
@@ -39,13 +41,18 @@ const ToDo = ({
               <IconButton
                 variant="raised"
                 color="primary"
-                disabled={isLoadingAdd}
+                // disabled={isLoadingAdd}
                 onClick={handleAddTodo}>
                 <Add />
               </IconButton>
             </Grid>
           </Grid>
-          <ToDoList items={items} handleDeleteToDo={handleDeleteToDo} />
+          <ToDoList
+            items={items}
+            handleDeleteToDo={handleDeleteToDo}
+            handleCheckDone={handleCheckDone}
+            handleRemoveDone={handleRemoveDone}
+          />
         </div>
       </div>
     </Template>

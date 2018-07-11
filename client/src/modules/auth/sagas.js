@@ -43,7 +43,7 @@ function* loginWorker({ values }) {
       data: jwtDecode(response.data.token),
     })
     yield put(showNotification(' Login success '))
-    yield put(push('/dashboard'))
+    yield put(push('/todo'))
   } catch (error) {
     yield put({
       type: CONSTANTS.SEND_LOGIN_FAILURE,

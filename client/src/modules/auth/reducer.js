@@ -23,6 +23,7 @@ const initialState = fromJS({
     },
   },
   data: null,
+  token: '',
 })
 /**
  * Reducer

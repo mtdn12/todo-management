@@ -1,9 +1,5 @@
 import axios from 'axios'
 
-import {
-  getToken
-} from '../utils/token'
-
-export function configureApiSettings() {
-  axios.defaults.headers.common['Authorization'] = getToken()
+export function configureApiSettings(token) {
+  axios.defaults.headers.common['Authorization'] = token
 }

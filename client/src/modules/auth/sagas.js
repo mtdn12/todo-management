@@ -36,11 +36,11 @@ function* loginWorker({ values }) {
   try {
     const response = yield call(login, values.email, values.password)
     checkErrors(response)
-    yield setToken(response.data.token)
-    yield configureApiSettings()
+    yield configureApiSettings(response.data.token)
     yield put({
       type: CONSTANTS.SEND_LOGIN_SUCCESS,
       data: jwtDecode(response.data.token),
+      token: response.data.token,
     })
     yield put(showNotification(' Login success '))
     yield put(push('/todo'))

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const passport = require("passport");
 const moment = require("moment");
+const momentTZ = require('moment-timezone')
 // Todo modules
 const Todo = require("../../Models/Todo");
 // History modules
@@ -10,8 +11,8 @@ const Daily = require("../../Models/Daily")
 // Todo validate
 const validateTodoInput = require("../../validation/todo");
 
-const today = moment().startOf('day')
-const tomorrow = moment().endOf('day')
+const today = momentTZ().tz('Asia/Ho_Chi_Minh').startOf('day')
+const tomorrow = momentTZ().tz('Asia/Ho_Chi_Minh').endOf('day')
 
 // Routes POST: /api/todos/
 // desc : Create a todo

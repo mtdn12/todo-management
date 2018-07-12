@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const passport = require("passport");
-const moment = require('moment')
 
 // Require History model
 const History = require("../../Models/History");

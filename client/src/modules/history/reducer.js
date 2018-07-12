@@ -8,7 +8,11 @@ import { ActionHandler } from './actions'
 const initialState = fromJS({
   isLoading: false,
   items: [],
-  generalInfo: {}
+  generalInfo: {},
+  dialog: {
+    isOpen: false,
+    item: [],
+  },
 })
 /**
  * Reducer

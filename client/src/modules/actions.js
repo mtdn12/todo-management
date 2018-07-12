@@ -32,4 +32,8 @@ export {
 } from './dailyTask/actions'
 
 // History actions
-export { requestGetListHistory } from './history/actions'
+export {
+  requestGetListHistory,
+  openDialog,
+  closeDialog,
+} from './history/actions'

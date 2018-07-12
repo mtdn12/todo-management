@@ -31,3 +31,5 @@ export { default as Navbar } from './organisms/Navbar'
 export { default as Notification } from './organisms/Notification'
 export { default as ToDoList } from './organisms/ToDoList'
 export { default as DailyList } from './organisms/DailyList'
+export { default as HistoryDialog } from './organisms/HistoryDialog'
+

@@ -5,14 +5,18 @@ import { withReducer, withSaga } from '../utils'
 import { historyReducer } from '../modules/reducers'
 import { historySaga } from '../modules/sagas'
 import { History } from '../components'
-import { requestGetListHistory } from '../modules/actions'
+import {
+  requestGetListHistory,
+  openDialog,
+  closeDialog,
+} from '../modules/actions'
 import { func } from 'prop-types'
 
 class HistoryContainer extends Component {
   static propTypes = {
     handleGetHistories: func.isRequired,
   }
-  componentDidMount(){
+  componentDidMount() {
     this.props.handleGetHistories()
   }
   render() {
@@ -24,10 +28,14 @@ const mapStateToProps = state => ({
   items: state.getIn(['history', 'items']),
   isLoading: state.getIn(['history', 'isLoading']),
   generalInfo: state.getIn(['history', 'generalInfo']),
+  dialogItem: state.getIn(['history', 'dialog', 'item']),
+  isOpenDialog: state.getIn(['history', 'dialog', 'isOpen']),
 })
 
 const mapDispatchToProps = dispatch => ({
   handleGetHistories: () => dispatch(requestGetListHistory()),
+  handleOpenDialog: item => dispatch(openDialog(item)),
+  handleCloseDialog: () => dispatch(closeDialog()),
 })
 
 const withConnect = connect(

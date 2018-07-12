@@ -6,7 +6,6 @@ import { push } from 'react-router-redux'
 import { showNotification } from '../actions'
 import { register, login } from '../../api/authApi'
 import checkErrors from '../../utils/checkError'
-import { setToken } from '../../utils/token'
 import { configureApiSettings } from '../../config/api'
 
 function* registerWorker({ values }) {
@@ -36,12 +35,12 @@ function* loginWorker({ values }) {
   try {
     const response = yield call(login, values.email, values.password)
     checkErrors(response)
-    yield configureApiSettings(response.data.token)
     yield put({
       type: CONSTANTS.SEND_LOGIN_SUCCESS,
       data: jwtDecode(response.data.token),
       token: response.data.token,
     })
+    yield configureApiSettings(response.data.token)
     yield put(showNotification(' Login success '))
     yield put(push('/todo'))
   } catch (error) {

@@ -18,11 +18,9 @@ import App from './components/App'
 
 const initialState = Immutable.Map()
 const history = createHistory()
-configureApiSettings()
-
 async function init() {
   const store = await configureStore(initialState, history)
-
+  configureApiSettings(store.getState().getIn(['auth', 'token']))
   const MOUNT_NODE = document.getElementById('root')
   const render = () =>
     ReactDOM.render(
@@ -33,7 +31,6 @@ async function init() {
       </Provider>,
       MOUNT_NODE
     )
-
   if (module.hot) {
     module.hot.accept('./components/App', () => {
       ReactDOM.unmountComponentAtNode(MOUNT_NODE)

@@ -12,7 +12,7 @@ import {
 import { object, bool, func } from 'prop-types'
 
 const HistoryDialog = ({ classes, isOpen, handleClose, item }) => {
-  console.log(item.toJS())
+  // console.log(item.toJS())
   return (
     <Dialog
       open={isOpen}

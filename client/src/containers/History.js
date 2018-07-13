@@ -9,18 +9,37 @@ import {
   requestGetListHistory,
   openDialog,
   closeDialog,
+  setFilterPage,
+  setFilterLimit,
 } from '../modules/actions'
-import { func } from 'prop-types'
+import { func, object } from 'prop-types'
 
 class HistoryContainer extends Component {
   static propTypes = {
     handleGetHistories: func.isRequired,
+    filter: object.isRequired,
+    handleSetFilterLimit: func.isRequired,
+    handleSetFilterPage: func.isRequired,
   }
   componentDidMount() {
-    this.props.handleGetHistories()
+    this.props.handleGetHistories(this.props.filter.toJS())
+  }
+  handleChangePage = async (e, page) => {
+    await this.props.handleSetFilterPage(page)
+    this.props.handleGetHistories(this.props.filter.toJS())
+  }
+  handleChangeRowsPerPage = async e => {
+    await this.props.handleSetFilterLimit(e.target.value)
+    this.props.handleGetHistories(this.props.filter.toJS())
   }
   render() {
-    return <History {...this.props} />
+    return (
+      <History
+        handleChangePage={this.handleChangePage}
+        handleChangeRowsPerPage={this.handleChangeRowsPerPage}
+        {...this.props}
+      />
+    )
   }
 }
 
@@ -30,12 +49,18 @@ const mapStateToProps = state => ({
   generalInfo: state.getIn(['history', 'generalInfo']),
   dialogItem: state.getIn(['history', 'dialog', 'item']),
   isOpenDialog: state.getIn(['history', 'dialog', 'isOpen']),
+  totalCount: state.getIn(['history', 'totalCount']),
+  page: state.getIn(['history', 'filter', 'page']),
+  limit: state.getIn(['history', 'filter', 'limit']),
+  filter: state.getIn(['history', 'filter']),
 })
 
 const mapDispatchToProps = dispatch => ({
-  handleGetHistories: () => dispatch(requestGetListHistory()),
+  handleGetHistories: filter => dispatch(requestGetListHistory(filter)),
   handleOpenDialog: item => dispatch(openDialog(item)),
   handleCloseDialog: () => dispatch(closeDialog()),
+  handleSetFilterPage: page => dispatch(setFilterPage(page)),
+  handleSetFilterLimit: limit => dispatch(setFilterLimit(limit)),
 })
 
 const withConnect = connect(

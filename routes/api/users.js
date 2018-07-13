@@ -67,7 +67,7 @@ router.post('/register', async(req, res) => {
 router.post('/login', async(req, res) => {
   try {
     const {errors, isValid} = validateLoginInput(req.body)
-    console.log(errors)
+    // console.log(errors)
     if(!isValid) return res.json({
       result:'fail',
       status: 404,
@@ -85,7 +85,7 @@ router.post('/login', async(req, res) => {
       })
     }
     //Check password
-    console.log(user.password)
+    // console.log(user.password)
     const check = await bcrypt.compare(req.body.password,user.password)
     if(!check) {
       return res.json({
@@ -109,7 +109,7 @@ router.post('/login', async(req, res) => {
       })
     })
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     return res.json({
       result: 'fail',
       status: 400,

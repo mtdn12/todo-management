@@ -13,6 +13,11 @@ const initialState = fromJS({
     isOpen: false,
     item: [],
   },
+  filter: {
+    page: 0,
+    limit: 10,
+  },
+  totalCount: 0,
 })
 /**
  * Reducer

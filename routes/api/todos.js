@@ -329,7 +329,7 @@ router.post('/set-daily', passport.authenticate('jwt',{session: false}), async(r
       items: newTodos
     })
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     return res.json({
       result: 'fail',
       status: 400,

@@ -7,14 +7,15 @@ import { getListHistory } from '../../api/historyApi'
 
 import checkErrors from '../../utils/checkError'
 
-function* getListHistoryWorker() {
+function* getListHistoryWorker({ filter }) {
   try {
-    const response = yield call(getListHistory)
+    const response = yield call(getListHistory, filter)
     checkErrors(response)
     yield put({
       type: CONSTANTS.GET_LIST_HISTORY_SUCCESS,
       items: response.data.items,
       generalInfo: response.data.generalInfo,
+      totalCount: response.data.totalCount,
     })
   } catch (error) {
     yield put({

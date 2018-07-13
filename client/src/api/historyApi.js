@@ -10,4 +10,7 @@ axios.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded'
 |--------------------------------------------------
 */
 
-export const getListHistory = () => axios.get('/api/history/')
+export const getListHistory = filter =>
+  axios.get('/api/history/', {
+    params: { ...filter },
+  })

@@ -1,7 +1,7 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import styles from './styles'
-import { object, bool, func } from 'prop-types'
+import { object, bool, func, number } from 'prop-types'
 import moment from 'moment'
 import { HistoryDialog } from '../../'
 import {
@@ -9,12 +9,11 @@ import {
   TableHead,
   TableCell,
   TableBody,
-  // TableFooter,
   TableRow,
-  // TablePagination,
   Button,
   Typography,
   CircularProgress,
+  TablePagination,
 } from '@material-ui/core'
 
 import Template from '../../templates/Template'
@@ -28,6 +27,11 @@ const History = ({
   handleCloseDialog,
   isOpenDialog,
   dialogItem,
+  handleChangeRowsPerPage,
+  handleChangePage,
+  limit,
+  totalCount,
+  page,
 }) => {
   return (
     <Template>
@@ -98,6 +102,21 @@ const History = ({
                     ))}
                 </TableBody>
               </Table>
+              <TablePagination
+                component="div"
+                count={totalCount}
+                rowsPerPage={limit}
+                page={page}
+                backIconButtonProps={{
+                  'aria-label': 'Previous Page',
+                }}
+                nextIconButtonProps={{
+                  'aria-label': 'Next Page',
+                }}
+                onChangePage={handleChangePage}
+                onChangeRowsPerPage={handleChangeRowsPerPage}
+                rowsPerPageOptions={[10, 25, 50]}
+              />
             </div>
           )}
           {isOpenDialog && (
@@ -122,6 +141,11 @@ History.propTypes = {
   handleCloseDialog: func,
   isOpenDialog: bool,
   dialogItem: object,
+  handleChangeRowsPerPage: func,
+  handleChangePage: func,
+  limit: number,
+  totalCount: number,
+  page: number,
 }
 
 export default withStyles(styles)(History)

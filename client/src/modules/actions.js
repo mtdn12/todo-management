@@ -36,4 +36,6 @@ export {
   requestGetListHistory,
   openDialog,
   closeDialog,
+  setFilterPage,
+  setFilterLimit,
 } from './history/actions'

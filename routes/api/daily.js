@@ -47,7 +47,7 @@ router.post('/',pasport.authenticate('jwt',{session: false}), async(req, res)=>{
     })
     
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     return res.json({
       result: 'fail',
       status: 400,

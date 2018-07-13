@@ -18,7 +18,7 @@ router.get(
       const totalCount = await History.countDocuments()
       const history = await History.find({
         user: req.user.id
-      }).skip(page * limit).limit(limit).sort('-date').populate("list", ["text", "completed", 'createdAt'])
+      }).skip(page * limit).limit(limit).sort('-addAt').populate("list", ["text", "completed", 'createdAt'])
       if (!history) throw new Error()
       // Get general info about todos
       const todos = await Todo.find({
@@ -41,7 +41,7 @@ router.get(
         generalInfo,
       })
     } catch (error) {
-      console.log(error)
+      // console.log(error)
       return res.json({        
         result: "fail",
         status: 400,
